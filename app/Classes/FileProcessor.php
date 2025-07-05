@@ -11,7 +11,7 @@ class FileProcessor implements FileProcessorInterface
 
     public function __construct(string $filePath)
     {
-        $this->filePath = $filePath;
+        $this->filePath = storage_path('app/'.$filePath);
         $this->outputPath = $this->addTimestampToFileName();
     }
 
