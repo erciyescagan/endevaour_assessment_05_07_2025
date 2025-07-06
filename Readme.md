@@ -4,6 +4,10 @@
 
 This project was developed as part of the Endeavour application process. It provides a robust system for importing data from CSV or JSON files into a MySQL database using Laravel.
 
+The application directly choose the correct File Processor regarding to extension of uploaded file.
+
+
+
 ---
 
 ## Tech Stack
@@ -72,11 +76,13 @@ Ensure the file is already placed inside the `storage/app` directory.
 php artisan import:file {filename}
 ```
 
-Replace `{filename}` with the actual name of your file (e.g., `subjects.ndjson`).
+Replace `{filename}` with the actual name of your file (e.g., `example.json`).
 
 ---
 
-## Filtering Records
+## Features
+
+### Filtering Records
 
 To apply filters before persisting the data, modify the `initializeService()` method in the `ImportSubjectJob` class:
 
@@ -93,3 +99,22 @@ private function initializeService(): void
 
 Each filter implements a common interface to allow flexible and testable data filtering.
 
+### Creating a New File Processor
+
+```bash
+php artisan make:file-processor {file}
+```
+
+### Creating a New Filtering 
+
+```bash
+php artisan make:filter {file}
+```
+
+### Creating a New Service 
+
+Every service class must be tied to a corresponding model.
+
+```bash
+php artisan make:service {file} {--model=}
+```

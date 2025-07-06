@@ -8,6 +8,7 @@ use Illuminate\Console\Command;
 class SubjectFileImporterCommand extends Command
 {
     protected $signature = 'import:file {filename : File name, e.g. subjects.ndjson}';
+    
     protected $description = 'Dispatches a background job to import subjects from a file';
 
     public function handle(): int

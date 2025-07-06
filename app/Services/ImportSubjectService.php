@@ -6,15 +6,11 @@ use App\Models\Subject;
 use Carbon\Carbon;
 use App\Classes\Service;
 use App\Interfaces\FilteringInterface;
-use App\Filters\AgeFilter;
 use Illuminate\Database\Eloquent\Model;
-use Psy\Sudo;
 
 class ImportSubjectService extends Service
 {
-    /**
-     * @var FilteringInterface[]
-     */
+    
     protected array $filters = [FilteringInterface::class];
 
     protected Model $model;

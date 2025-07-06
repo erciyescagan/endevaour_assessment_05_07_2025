@@ -8,13 +8,14 @@ use App\Classes\Filter;
 class AgeFilter extends Filter
 {
 
-   public function applyFilter(array $record): bool
+    public function applyFilter(array $record): bool
     {
         $this->isDateOfBirthValid($record['date_of_birth']);
         $age = $this->getAge($record['date_of_birth']);
         
         return !is_null($age) && $age >= 18 && $age <= 65;
     }
+    
 
     private function isDateOfBirthValid(?string $date): bool
     {

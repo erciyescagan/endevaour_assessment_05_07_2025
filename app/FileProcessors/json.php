@@ -23,7 +23,7 @@ class json extends FileProcessor
         fclose($fh);
     }
     
-    protected function flattenArray(array $array, string $prefix = ''): array
+    private function flattenArray(array $array, string $prefix = ''): array
     {
         $result = [];
         foreach ($array as $key => $value) {
