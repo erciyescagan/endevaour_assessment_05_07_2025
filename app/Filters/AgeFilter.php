@@ -13,7 +13,7 @@ class AgeFilter extends Filter
         $this->isDateOfBirthValid($record['date_of_birth']);
         $age = $this->getAge($record['date_of_birth']);
         
-        return !is_null($age) && $age >= 18 && $age <= 65;
+        return is_null($age) || ($age >= 18 && $age <= 65);
     }
     
 

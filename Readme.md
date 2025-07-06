@@ -84,7 +84,7 @@ Replace `{filename}` with the actual name of your file (e.g., `example.json`).
 
 ### Filtering Records
 
-To apply filters before persisting the data, modify the `initializeService()` method in the `ImportSubjectJob` class:
+To apply filters before persisting the data, modify the `initializeService()` method by creating new objects from required filter classes in the `ImportSubjectJob` class:
 
 ```php
 private function initializeService(): void

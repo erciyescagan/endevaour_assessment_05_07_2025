@@ -22,7 +22,7 @@ class ImportSubjectJob implements ShouldQueue
     use InteractsWithQueue, Queueable, SerializesModels;
 
     protected string $file;
-    protected string $extension = 'json';
+    protected string $extension;
     protected string $convertedFilePath;
     protected ImportServiceInterface $service;
     protected FileProcessorInterface $fileProcessor;
