@@ -66,9 +66,7 @@ class ImportSubjectJob implements ShouldQueue
     private function initializeService(): void
     {
         $this->service = new ImportSubjectService([
-            new AgeFilter(),
-            new TripleDigitFilter(),
-            new CheckedFilter()
+            new AgeFilter()
         ]);
     }
 
