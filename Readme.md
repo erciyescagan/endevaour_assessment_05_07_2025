@@ -1,87 +1,95 @@
-# Endevaour Assessment
-## endevaour_assessment_05_07_2025
+# Endeavour Assessment
 
-This project was developed as part of the Endevaour application process. It allows retrieveing data from csv or json file to mysql database.
+## Repository: `endevaour_assessment_05_07_2025`
+
+This project was developed as part of the Endeavour application process. It provides a robust system for importing data from CSV or JSON files into a MySQL database using Laravel.
 
 ---
 
 ## Tech Stack
 
 - **Composer**
-- **Laravel+**
-- **MySQL** 
-- **Docker** 
+- **Laravel 12+**
+- **MySQL**
+- **Docker**
 
 ---
 
 ## Installation
 
-### Clone repository
+### 1. Clone the repository
 
 ```bash
 git clone https://github.com/erciyescagan/endevaour_assessment_05_07_2025.git
+cd endevaour_assessment_05_07_2025
 ```
 
-### Copy .env.example in .env
+### 2. Start Docker containers
 
 ```bash
-mv .env.example .env
+docker compose up -d --build
 ```
 
-### Docker
+### 3. Access the application container
 
 ```bash
-docker compose up -d --build 
+docker exec -it merterciyescagan_app bash
 ```
+
+### 4. Install PHP dependencies
 
 ```bash
-docker exec -it merterciyescagan_app bash 
+composer install
 ```
 
-### Install composer dependencies
+### 5. Set up environment variables
 
 ```bash
-composer install 
+cp .env.example .env
 ```
 
-### Migrate database
+### 6. Run database migrations
 
 ```bash
 php artisan migrate
 ```
 
-## Usage 
+---
 
-### Start Queue Working
+## Usage
+
+### Start the queue worker
 
 ```bash
 php artisan queue:work
 ```
 
-### Import File Command
+### Import file into the database
+
+Ensure the file is already placed inside the `storage/app` directory.
 
 ```bash
-php artisan import:subjects {file} 
+php artisan import:file {filename}
 ```
 
-### Filtering
+Replace `{filename}` with the actual name of your file (e.g., `subjects.ndjson`).
+
+---
+
+## Filtering Records
+
+To apply filters before persisting the data, modify the `initializeService()` method in the `ImportSubjectJob` class:
 
 ```php
-  private function initializeService(): void
-    {
-        $this->service = new ImportSubjectService([
-            new AgeFilter(),
-            new CheckedFilter(),
-            new TripleDigitFilter()
-        ]);
-    }
+private function initializeService(): void
+{
+    $this->service = new ImportSubjectService([
+        new AgeFilter(),
+        new CheckedFilter(),
+        new TripleDigitFilter()
+    ]);
+}
 ```
 
+Each filter implements a common interface to allow flexible and testable data filtering.
 
-### Optional Feature
-
-You are able to define a start index and end index.
-
-```bash
-php artisan import:subjects {file} --start={startIndex} --end={endInndex}
-```

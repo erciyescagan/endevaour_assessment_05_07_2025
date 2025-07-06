@@ -4,7 +4,7 @@ services:
   app:
     build:
       context: ./docker/php
-    container_name: laravel_app
+    container_name: merterciyescagan_app
     working_dir: /var/www/html
     volumes:
       - ./:/var/www/html
@@ -15,7 +15,7 @@ services:
 
   nginx:
     image: nginx:alpine
-    container_name: laravel_nginx
+    container_name: merterciyescagan_nginx
     ports:
       - "8000:80"
     volumes:
@@ -28,11 +28,11 @@ services:
 
   mysql:
     image: mysql:8.0
-    container_name: laravel_mysql
+    container_name: merterciyescagan_mysql
     ports:
       - "3306:3306"
     environment:
-      MYSQL_DATABASE: laravel
+      MYSQL_DATABASE: merterciyescagan_endevaour_db
       MYSQL_ROOT_PASSWORD: secret
       MYSQL_USER: laravel
       MYSQL_PASSWORD: secret
@@ -43,7 +43,7 @@ services:
 
   phpmyadmin:
     image: phpmyadmin/phpmyadmin
-    container_name: laravel_phpmyadmin
+    container_name: merterciyescagan_phpmyadmin
     environment:
       PMA_HOST: mysql
       PMA_PORT: 3306
